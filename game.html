@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guess the Number Game</title>
+</head>
+<body>
+    <h1>Guess the Number Game</h1>
+    <p>Guess a number between 1 and 100:</p>
+    <input type="number" id="guess">
+    <button onclick="checkGuess()">Check</button>
+    <p id="message"></p>
+    <button onclick="resetGame()">Play Again</button>
+
+    <script>
+        let targetNumber = Math.floor(Math.random() * 100) + 1;
+        let numberOfTries = 0;
+
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guess').value);
+            const messageElement = document.getElementById('message');
+
+            numberOfTries++;
+
+            if (guess === targetNumber) {
+                messageElement.textContent = `Congratulations! You guessed the correct number in ${numberOfTries} tries.`;
+            } else if (guess < targetNumber) {
+                messageElement.textContent = 'Try higher.';
+            } else {
+                messageElement.textContent = 'Try lower.';
+            }
+        }
+
+        function resetGame() {
+            targetNumber = Math.floor(Math.random() * 100) + 1;
+            numberOfTries = 0;
+            document.getElementById('guess').value = '';
+            document.getElementById('message').textContent = '';
+        }
+    </script>
+</body>
+</html>
